@@ -22,6 +22,20 @@
 #define _MACGAMINGTG 11
 
 
+const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
+    if (record->event.pressed) {
+        switch(id) {
+            case 0:
+                SEND_STRING("<3");
+                return false;
+            case 1:
+                SEND_STRING("^^");
+                return false;
+        }
+    }
+    return MACRO_NONE;
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QW] = { /* Qwerty */
   {KC_Q,            KC_W,     KC_E,               KC_R,                   KC_T,     KC_TRNS,              KC_Y,     KC_U,       KC_I,     KC_O,     KC_P    },

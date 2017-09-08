@@ -22,26 +22,13 @@
 #define _MACGAMINGTG 11
 
 
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
-    if (record->event.pressed) {
-        switch(id) {
-            case 0:
-                SEND_STRING("<3");
-                return false;
-            case 1:
-                SEND_STRING("^^");
-                return false;
-        }
-    }
-    return MACRO_NONE;
-};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QW] = { /* Qwerty */
   {KC_Q,            KC_W,     KC_E,               KC_R,                   KC_T,     KC_TRNS,              KC_Y,     KC_U,       KC_I,     KC_O,     KC_P    },
   {KC_A,            KC_S,     KC_D,               LT(_QUICKACCESS, KC_F), KC_G,     KC_TRNS,              KC_H,     KC_J,       KC_K,     KC_L,     KC_SCLN },
   {KC_Z,            KC_X,     KC_C,               KC_V,                   KC_B,     KC_LALT,              KC_N,     KC_M,       KC_COMM,  KC_DOT,   NO_SLSH },
-  {MO(_FUNCTIONS),  KC_ESC,   KC_TAB,             MT(MOD_LSFT, KC_TAB),   KC_SPC,   MT(MOD_LCTL, KC_ENT), KC_BSPC,  MO(_CODE),  NO_MINS,  NO_QUES,  OSL(_EXTRALETTERS)}
+  {MO(_FUNCTIONS),  KC_LGUI,  KC_TAB,             MT(MOD_LSFT, KC_TAB),   KC_SPC,   MT(MOD_LCTL, KC_ENT), KC_BSPC,  MO(_CODE),  NO_MINS,  NO_QUES,  OSL(_EXTRALETTERS)}
 },
 /*
  *  !       @     up     {    }        ||     pgup    7     8     9    *
@@ -62,9 +49,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * lower  insert super shift bksp ctrl || alt space   fn    .     0    =
  */
 [_EXTRALETTERS] = { /* [> LOWER <] */
-  {KC_TRNS, KC_TRNS, NO_AE,   KC_TRNS, KC_TRNS, KC_TRNS, KC_AT,   KC_TRNS, LSFT(KC_I),  NO_OSLH, KC_TRNS},
-  {NO_AA,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS},
-  {KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RESET,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS},
+  {KC_TRNS, KC_TRNS, NO_AE,   KC_TRNS, KC_TRNS, KC_TRNS, NO_AT,   KC_TRNS, LSFT(KC_I),  NO_OSLH, KC_TRNS},
+  {NO_AA,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, M(0),        KC_TRNS, KC_TRNS},
+  {KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RESET,   KC_TRNS, KC_TRNS, KC_TRNS, M(1),        KC_TRNS, KC_TRNS},
   {KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TO(_QW), KC_TRNS,     KC_TRNS, KC_TRNS}
 },
 /*
@@ -74,10 +61,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * lower  insert super shift bksp ctrl || alt space   fn    .     0    =
  */
 [_QUICKACCESS] = { /* [> QUICKACCESS <] */
-  {KC_MS_WH_UP,     LALT(LSFT(KC_TAB)), LALT(KC_TAB),           KC_LCBR,    KC_RCBR,    KC_TRNS, KC_PGUP,   KC_7,     KC_8,     NO_OSLH,          KC_TRNS},
-  {KC_MS_WH_DOWN,   LCTL(LSFT(KC_TAB)), LCTL(KC_TAB),           KC_TRNS,    KC_DLR,     KC_TRNS, KC_PGDN,   KC_4,     KC_5,     KC_6,             KC_WAKE},
-  {KC_ESC,          KC_VOLD,            KC_VOLU,                KC_VOLU,    KC_AMPR,    KC_LALT, KC_GRV,    KC_1,     KC_2,     KC_3,             KC_SLEP},
-  {KC_TRNS,         KC_INS,             KC_LGUI,                KC_TRNS,    KC_BSPC,    KC_TRNS, KC_SPC,    KC_TRNS,  KC_DOT,   KC_MYCM,          KC_PWR}
+  {KC_MS_WH_UP,     LALT(LSFT(KC_TAB)), LALT(KC_TAB),           KC_LCBR,    KC_RCBR,    KC_TRNS, KC_PGUP,   KC_7,     KC_8,                 NO_OSLH,          KC_TRNS},
+  {KC_MS_WH_DOWN,   LCTL(LSFT(KC_TAB)), LCTL(KC_TAB),           KC_TRNS,    KC_DLR,     KC_TRNS, NO_APOS,   NO_AE,    NO_OSLH,              NO_AA,            KC_WAKE},
+  {KC_ESC,          KC_VOLD,            KC_VOLU,                KC_VOLU,    KC_AMPR,    KC_LALT, NO_CIRC,   NO_GRTR,  LSFT(NO_GRTR),        KC_3,             KC_SLEP},
+  {KC_TRNS,         KC_INS,             KC_LGUI,                KC_TRNS,    KC_BSPC,    KC_TRNS, KC_SPC,    KC_TRNS,  KC_DOT,               KC_MYCM,          KC_PWR}
 },
 /*
  *  !       @     up     {    }        ||     pgup    7     8     9    *
@@ -154,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_MACFUNCTIONS] = { /* [> FUNCTIONS <] */
   {RESET,     KC_AT,      NO_AE,    KC_LCBR,    KC_RCBR,    KC_TRNS, KC_PGUP,   KC_7,     KC_8,     NO_OSLH,          TG(_MACQW)},
-  {KC_ESC,    KC_MPRV,    KC_MPLY,  KC_MNXT,    KC_DLR,     KC_TRNS, KC_PGDN,   KC_4,     KC_5,     KC_6,             KC_WAKE},
+  {KC_ESC,    KC_MRWD,    KC_MPLY,  KC_MFFD,    KC_DLR,     KC_TRNS, KC_PGDN,   KC_4,     KC_5,     KC_6,             KC_WAKE},
   {KC_DELETE, KC_VOLD,    KC_VOLU,  KC_VOLU,    KC_AMPR,    KC_LALT, KC_GRV,    KC_1,     KC_2,     KC_3,             KC_SLEP},
   {KC_TRNS,   KC_INS,     KC_LGUI,  KC_TRNS,    KC_BSPC,    KC_TRNS, KC_SPC,    KC_TRNS,  KC_DOT,   KC_MYCM,          KC_PWR}
 },
@@ -185,11 +172,13 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
           } else {
             unregister_code(KC_RSFT);
           }
-        break;
+          break;
+        case 1:
+            SEND_STRING("^^");
+            return false;
       }
     return MACRO_NONE;
 };
-
 
 
 

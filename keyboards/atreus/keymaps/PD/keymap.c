@@ -25,10 +25,10 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QW] = { /* Qwerty */
-  {KC_Q,            KC_W,     KC_E,               KC_R,                   KC_T,     KC_TRNS,              KC_Y,     KC_U,       KC_I,     KC_O,     KC_P    },
-  {KC_A,            KC_S,     KC_D,               LT(_QUICKACCESS, KC_F), KC_G,     KC_TRNS,              KC_H,     KC_J,       KC_K,     KC_L,     KC_SCLN },
-  {KC_Z,            KC_X,     KC_C,               KC_V,                   KC_B,     KC_LALT,              KC_N,     KC_M,       KC_COMM,  KC_DOT,   NO_SLSH },
-  {MO(_FUNCTIONS),  KC_LGUI,  KC_TAB,             MT(MOD_LSFT, KC_TAB),   KC_SPC,   MT(MOD_LCTL, KC_ENT), KC_BSPC,  MO(_CODE),  NO_MINS,  NO_QUES,  OSL(_EXTRALETTERS)}
+  {KC_Q,          KC_W,    KC_E,    KC_R,                   KC_T,     KC_TRNS,              KC_Y,     KC_U,       KC_I,     KC_O,     KC_P    },
+  {KC_A,          KC_S,    KC_D,    LT(_QUICKACCESS, KC_F), KC_G,     KC_TRNS,              KC_H,     KC_J,       KC_K,     KC_L,     KC_SCLN },
+  {KC_Z,          KC_X,    KC_C,    KC_V,                   KC_B,     KC_LALT,              KC_N,     KC_M,       KC_COMM,  KC_DOT,   NO_SLSH },
+  {MO(_FUNCTIONS),KC_LGUI, KC_TAB,  MT(MOD_LSFT, KC_TAB),   KC_SPC,   MT(MOD_LCTL, KC_ENT), KC_BSPC,  MO(_CODE),  NO_MINS,  NO_QUES,  OSL(_EXTRALETTERS)}
 },
 /*
  *  !       @     up     {    }        ||     pgup    7     8     9    *
@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_FUNCTIONS] = { /* [> FUNCTIONS <] */
   {RESET,     KC_AT,      NO_AE,    KC_LCBR,    KC_RCBR,    KC_TRNS, KC_PGUP,   KC_7,     KC_8,     NO_OSLH,          TG(_MACQW)},
-  {KC_ESC,    KC_MPRV,    KC_MPLY,  KC_MNXT,    KC_DLR,     KC_TRNS, KC_PGDN,   KC_4,     KC_5,     KC_6,             KC_WAKE},
+  {KC_ESC,    KC_MPRV,    KC_MPLY,  KC_MNXT,    KC_DLR,     KC_TRNS, KC_PGDN,   KC_4,     KC_5,     KC_6,             TG(_GAMINGTG)},
   {KC_DELETE, KC_VOLD,    KC_VOLU,  KC_VOLU,    KC_AMPR,    KC_LALT, KC_GRV,    KC_1,     KC_2,     KC_3,             KC_SLEP},
   {KC_TRNS,   KC_INS,     KC_LGUI,  KC_TRNS,    KC_BSPC,    KC_TRNS, KC_SPC,    KC_TRNS,  KC_DOT,   KC_MYCM,          KC_PWR}
 },
@@ -85,11 +85,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * lower  insert super shift bksp ctrl || alt space   fn    .     0    =
  */
 [_GAMINGTG] = { /* GAMING */
-  {KC_1,            KC_Q,     KC_W,       KC_E,                 KC_T,     KC_TRNS,              KC_Y,     KC_U,       KC_I,     KC_O,     KC_TRNS    },
-  {KC_2,            KC_A,     KC_S,       KC_D,                 KC_G,     KC_TRNS,              KC_H,     KC_J,       KC_K,     KC_L,     KC_SCLN },
-  {KC_3,            KC_Z,     KC_X,       KC_C,                 KC_V,     KC_LALT,              MOD_LALT, KC_TAB,     KC_COMM,  KC_DOT,   KC_SLSH },
-  {KC_4,            KC_ESC,   KC_LGUI,    KC_TRNS,              KC_SPC,   KC_LCTL,              KC_BSPC,  MO(_CODE),  NO_MINS,  KC_QUOT,  KC_LGUI  }
+  {KC_TAB,          KC_Q,     KC_W,       KC_E,                 KC_R,     KC_TRNS,              KC_Y,     KC_U,       KC_I,     KC_O,     KC_P    },
+  {KC_2,            KC_A,     KC_S,       KC_D,                 KC_F,     KC_TRNS,              KC_H,     KC_J,       KC_K,     KC_L,     TO(_QW) },
+  {KC_3,            KC_Z,     KC_X,       KC_C,                 KC_V,     KC_LSFT,              KC_N,     KC_M,       KC_COMM,  KC_DOT,   KC_SLSH },
+  {KC_4,            KC_ESC,   KC_LALT,    KC_LSFT,              KC_LCTL,  KC_SPC,               KC_BSPC,  MO(_CODE),  NO_MINS,  KC_QUOT,  KC_LGUI  }
 },
+
 
 [_MACQW] = { /* Qwerty */
   {KC_Q,            KC_W,     KC_E,               KC_R,                   KC_T,     KC_TRNS,              KC_Y,     KC_U,       KC_I,     KC_O,     KC_P    },
@@ -141,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_MACFUNCTIONS] = { /* [> FUNCTIONS <] */
   {RESET,     KC_AT,      NO_AE,    KC_LCBR,    KC_RCBR,    KC_TRNS, KC_PGUP,   KC_7,     KC_8,     NO_OSLH,          TG(_MACQW)},
-  {KC_ESC,    KC_MRWD,    KC_MPLY,  KC_MFFD,    KC_DLR,     KC_TRNS, KC_PGDN,   KC_4,     KC_5,     KC_6,             KC_WAKE},
+  {KC_ESC,    KC_MRWD,    KC_MPLY,  KC_MFFD,    KC_DLR,     KC_TRNS, KC_PGDN,   KC_4,     KC_5,     KC_6,             TG(_GAMINGTG)},
   {KC_DELETE, KC_VOLD,    KC_VOLU,  KC_VOLU,    KC_AMPR,    KC_LALT, KC_GRV,    KC_1,     KC_2,     KC_3,             KC_SLEP},
   {KC_TRNS,   KC_INS,     KC_LGUI,  KC_TRNS,    KC_BSPC,    KC_TRNS, KC_SPC,    KC_TRNS,  KC_DOT,   KC_MYCM,          KC_PWR}
 },

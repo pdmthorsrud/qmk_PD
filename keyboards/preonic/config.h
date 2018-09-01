@@ -23,24 +23,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
 #define PRODUCT_ID      0x6061
-#define DEVICE_VER      0x0001
-#define MANUFACTURER    Ortholinear Keyboards
-#define PRODUCT         The Preonic Keyboard
+#define MANUFACTURER    OLKB
+#define PRODUCT         Preonic
 #define DESCRIPTION     A compact ortholinear keyboard
 
 /* key matrix size */
-#define MATRIX_ROWS 5
-#define MATRIX_COLS 12
+#define MATRIX_ROWS 6
+#define MATRIX_COLS 14
 
 /* Planck PCB default pin-out */
-#define MATRIX_ROW_PINS { D2, D5, B5, B6, D3 }
-#define MATRIX_COL_PINS { F1, F0, B0, C7, F4, F5, F6, F7, D4, D6, B4, D7 }
+#define MATRIX_ROW_PINS { B0, B1, B2, B3, B7, D0 }
+#define MATRIX_COL_PINS { F6, F7, B6, B5, B4, D7, D6, D4, C7, D5, C6, D3, D2, D1 }
 #define UNUSED_PINS
 
-#define AUDIO_VOICES
-#define C6_AUDIO
+//#define QMK_ESC_OUTPUT F1
+//#define QMK_ESC_INPUT B5
+//#define QMK_LED     E6
+//#define QMK_SPEAKER C6
 
-#define BACKLIGHT_PIN B7
+//#define AUDIO_VOICES
+//#define C6_AUDIO
+
+//#define BACKLIGHT_PIN F5
 
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION COL2ROW
@@ -49,7 +53,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define MATRIX_HAS_GHOST
 
 /* number of backlight levels */
-#define BACKLIGHT_LEVELS 3
+#define RGB_DI_PIN F1
+#define RGBLED_NU 6
 
 /* Set 0 if debouncing isn't needed */
 #define DEBOUNCING_DELAY 5
@@ -63,14 +68,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define IS_COMMAND() ( \
     keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) \
 )
-
-/* ws2812 RGB LED */
-#define RGB_DI_PIN D1
-#define RGBLIGHT_ANIMATIONS
-#define RGBLED_NUM 28     // Number of LEDs
-#define RGBLIGHT_HUE_STEP 10
-#define RGBLIGHT_SAT_STEP 17
-#define RGBLIGHT_VAL_STEP 17
 
 /*
  * Feature disable options

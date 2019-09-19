@@ -1,6 +1,3 @@
-TEST_LIST = $(notdir $(patsubst %/rules.mk,%,$(wildcard $(ROOT_DIR)/tests/*/rules.mk)))
-FULL_TESTS := $(TEST_LIST)
-
 include $(ROOT_DIR)/quantum/serial_link/tests/testlist.mk
 
 define VALIDATE_TEST_LIST
@@ -12,6 +9,5 @@ define VALIDATE_TEST_LIST
         endif
     endif
 endef
-
 
 $(eval $(call VALIDATE_TEST_LIST,$(firstword $(TEST_LIST)),$(wordlist 2,9999,$(TEST_LIST))))

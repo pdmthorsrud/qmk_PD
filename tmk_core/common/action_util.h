@@ -29,17 +29,9 @@ extern report_keyboard_t *keyboard_report;
 void send_keyboard_report(void);
 
 /* key */
-inline void add_key(uint8_t key) {
-  add_key_to_report(keyboard_report, key);
-}
-
-inline void del_key(uint8_t key) {
-  del_key_from_report(keyboard_report, key);
-}
-
-inline void clear_keys(void) {
-  clear_keys_from_report(keyboard_report);
-}
+void add_key(uint8_t key);
+void del_key(uint8_t key);
+void clear_keys(void);
 
 /* modifier */
 uint8_t get_mods(void);
@@ -90,7 +82,9 @@ uint8_t get_oneshot_layer_state(void);
 bool has_oneshot_layer_timed_out(void);
 
 /* inspect */
+uint8_t has_anykey(void);
 uint8_t has_anymod(void);
+uint8_t get_first_key(void);
 
 #ifdef __cplusplus
 }

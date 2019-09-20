@@ -56,3 +56,8 @@
 #endif
 
 #endif
+
+/* mouse key movement setting */
+#define MOUSEKEY_DELAY 100
+#define MOUSEKEY_INTERVAL 25
+#define MOUSE_MAX_SPEED 1
